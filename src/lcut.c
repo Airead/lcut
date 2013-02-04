@@ -106,6 +106,35 @@ void lcut_str_nequal(lcut_tc_t *tc, const char *expected, const char *actual, in
                            actual ? actual : "NULL");
 }
 
+void lcut_ptr_equal(lcut_tc_t *tc, const void *expected, const void *actual, int lineno,
+                    const char *fcname, const char *fname) {
+    RETURN_WHEN_FAILED(tc);
+
+    /* 
+     * both pointers are NULL or pointing to the same memory 
+     */ 
+    if (expected == actual) return;
+
+    FILL_IN_FAILED_REASON(tc, fname, fcname, lineno,
+                          "expected<%p> : actual<%p>",
+                           expected ? expected : "NULL", 
+                           actual ? actual : "NULL");
+}
+
+void lcut_ptr_nequal(lcut_tc_t *tc, const void *expected, const void *actual, int lineno,
+                     const char *fcname, const char *fname) {
+    RETURN_WHEN_FAILED(tc);
+
+    if (expected != actual) {
+        return;
+    }
+
+    FILL_IN_FAILED_REASON(tc, fname, fcname, lineno,
+                          "not expected<%p> : actual<%p>",
+                           expected ? expected : "NULL", 
+                           actual ? actual : "NULL");
+}
+
 void lcut_assert(lcut_tc_t *tc, const char *msg, int condition,
                  int lineno, const char *fcname, const char *fname) {
     RETURN_WHEN_FAILED(tc);

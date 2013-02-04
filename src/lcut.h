@@ -211,6 +211,10 @@ void lcut_str_equal(lcut_tc_t *tc, const char *expected, const char *actual, int
                     const char *fcname, const char *fname);
 void lcut_str_nequal(lcut_tc_t *tc, const char *expected, const char *actual, int lineno, 
                     const char *fcname, const char *fname);
+void lcut_ptr_equal(lcut_tc_t *tc, const void *expected, const void *actual, int lineno,
+                    const char *fcname, const char *fname);
+void lcut_ptr_nequal(lcut_tc_t *tc, const void *expected, const void *actual, int lineno,
+                     const char *fcname, const char *fname);
 void lcut_assert(lcut_tc_t *tc, const char *msg, int condition,
                  int lineno, const char *fcname, const char *fname);
 void lcut_true(lcut_tc_t *tc, int condition,
@@ -230,6 +234,14 @@ void lcut_true(lcut_tc_t *tc, int condition,
 
 #define LCUT_STR_NEQUAL(tc, expected, actual) do { \
         lcut_str_nequal(tc, expected, actual, __LINE__, __FUNCTION__, __FILE__); \
+    } while(0)
+
+#define LCUT_PTR_EQUAL(tc, expected, actual) do { \
+        lcut_ptr_equal(tc, expected, actual, __LINE__, __FUNCTION__, __FILE__); \
+    } while(0)
+
+#define LCUT_PTR_NEQUAL(tc, expected, actual) do { \
+        lcut_ptr_nequal(tc, expected, actual, __LINE__, __FUNCTION__, __FILE__); \
     } while(0)
 
 #define LCUT_ASSERT(tc, msg, condition) do { \
