@@ -1,4 +1,5 @@
 # Makefile.am
+AM_CFLAGS = -I../
 
 noinst_PROGRAMS = runtests calculator_test product_database_test string_test mock_test
 
