@@ -161,6 +161,19 @@ void lcut_true(lcut_tc_t *tc, int condition,
                           "");
 }
 
+void lcut_false(lcut_tc_t *tc, int condition,
+               int lineno, const char *fcname, const char *fname) {
+    RETURN_WHEN_FAILED(tc);
+
+    if (!condition) {
+        return;
+    }
+
+    FILL_IN_FAILED_REASON(tc, fname, fcname, lineno,
+                          "%s",
+                          "");
+}
+
 int lcut_test_init(lcut_test_t **test, const char *title, fixture_func setup, fixture_func teardown) {
     int		        rv	= 0;
     lcut_test_t		*p	= NULL;

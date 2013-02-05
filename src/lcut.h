@@ -219,6 +219,8 @@ void lcut_assert(lcut_tc_t *tc, const char *msg, int condition,
                  int lineno, const char *fcname, const char *fname);
 void lcut_true(lcut_tc_t *tc, int condition,
                int lineno, const char *fcname, const char *fname);
+void lcut_false(lcut_tc_t *tc, int condition,
+               int lineno, const char *fcname, const char *fname);
 
 #define LCUT_INT_EQUAL(tc, expected, actual) do { \
         lcut_int_equal(tc, expected, actual, __LINE__, __FUNCTION__, __FILE__); \
@@ -250,6 +252,10 @@ void lcut_true(lcut_tc_t *tc, int condition,
 
 #define LCUT_TRUE(tc, condition) do { \
         lcut_true(tc, condition, __LINE__, __FUNCTION__, __FILE__); \
+    } while(0)
+
+#define LCUT_FALSE(tc, condition) do { \
+        lcut_false(tc, condition, __LINE__, __FUNCTION__, __FILE__); \
     } while(0)
 
 /*
